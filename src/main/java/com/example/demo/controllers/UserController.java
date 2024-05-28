@@ -10,7 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import com.example.demo.DTOs.UtilDTOs;
-import com.example.demo.DTOs.user.UpdateProfileDTO;
+import com.example.demo.DTOs.user.UpdatePersonalInfoDTO;
 import com.example.demo.configs.props.AppInfoProps;
 import com.example.demo.models.User;
 import com.example.demo.services.UserService;
@@ -48,9 +48,9 @@ public class UserController {
         return ClientPages.profilePage;
     }
 
-    @PostMapping("account/update-profile")
-    public String updateProfile(@NonNull @Valid UpdateProfileDTO updateProfileDTO, BindingResult bindingResult,
-        Model model, Principal principal) throws BaseException, IOException {
+    @PostMapping("account/update-personal-info")
+    public String updatePersonalInfo(@NonNull @Valid UpdatePersonalInfoDTO updateProfileDTO,
+        BindingResult bindingResult, Model model, Principal principal) throws BaseException, IOException {
         String userId = principal.getName();
 
         if (bindingResult.hasErrors()) {

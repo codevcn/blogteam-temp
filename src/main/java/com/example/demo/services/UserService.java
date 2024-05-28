@@ -3,7 +3,7 @@ package com.example.demo.services;
 import com.example.demo.DAOs.UserDAO;
 import com.example.demo.DTOs.auth.CreateAccountDTO;
 import com.example.demo.DTOs.user.UpdatePasswordDTO;
-import com.example.demo.DTOs.user.UpdateProfileDTO;
+import com.example.demo.DTOs.user.UpdatePersonalInfoDTO;
 import com.example.demo.models.User;
 import com.example.demo.utils.exceptions.AuthException;
 import com.example.demo.utils.messages.AuthMessage;
@@ -30,7 +30,7 @@ public class UserService {
         userDAO.updatePassword(user);
     }
 
-    public void updateProfile(String userId, UpdateProfileDTO updateProfileDTO) {
+    public void updateProfile(String userId, UpdatePersonalInfoDTO updateProfileDTO) {
         User user = new User();
         user.setEmail(userId);
         user.setFullName(updateProfileDTO.getFullName());

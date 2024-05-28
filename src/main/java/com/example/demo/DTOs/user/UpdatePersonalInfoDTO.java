@@ -17,7 +17,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class UpdateProfileDTO {
+public class UpdatePersonalInfoDTO {
 
     @NotBlank(message = "Trường tên đầy đủ không thể thiếu")
     @Size(min = Lengths.minLengthOfCommentBlog, max = Lengths.maxLengthOfCommentBlog,
