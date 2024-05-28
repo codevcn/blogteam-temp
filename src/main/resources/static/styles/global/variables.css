@@ -1,0 +1,24 @@
+:root {
+    /* color */
+    --blgtm-regular-orange-cl: rgb(247, 154, 24);
+    --blgtm-regular-black-cl: rgb(0, 0, 0, 0.9);
+    --blgtm-regular-mediumblack-cl: rgb(82, 82, 82);
+    --blgtm-regular-gray-cl: gray;
+    --blgtm-regular-mediumgray-cl: rgb(214, 214, 215);
+    --blgtm-regular-lightgray-cl: rgb(242 242 242);
+    --blgtm-lightgray-cl: lightgray;
+    --blgtm-regular-blurgray-cl: rgb(241 241 241);
+    --blgtm-regular-white-cl: white;
+    --blgtm-regular-red-cl: rgba(255, 0, 0, 0.9);
+    --blgtm-divider-cl: rgb(229, 229, 229);
+    --blgtm-default-text-cl: black;
+    --blgtm-card-border-default-cl: rgba(23, 23, 23, 0.05);
+
+    /* font family */
+    --blgtm-default-fontf: "Work Sans", Arial, sans-serif;
+    --blgtm-poppins-bold-fontf: "Poppins", Arial, sans-serif;
+    --blgtm-poppins-regular-fontf: "Poppins", Arial, sans-serif;
+    --blgtm-arial-fontf: Arial, Helvetica, sans-serif;
+    --blgtm-times-new-roman-fontf: "Times New Roman", Times, serif;
+    --blgtm-roboto-regular-fontf: "Roboto", Times, serif;
+}

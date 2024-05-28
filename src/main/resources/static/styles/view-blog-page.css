@@ -1,0 +1,183 @@
+body {
+  background-color: rgb(241, 241, 241);
+}
+
+#page-main {
+  padding-bottom: 20px;
+}
+#page-main .blog-section {
+  display: flex;
+  column-gap: 10px;
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+}
+#page-main .blog-section .interactions {
+  width: 85px;
+  margin-top: 20px;
+}
+#page-main .blog-section .interactions .interaction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 5px;
+  margin-top: 20px;
+}
+#page-main .blog-section .interactions .interaction svg {
+  height: 22px;
+  width: 22px;
+}
+#page-main .blog-section .interactions .interaction .like-post-btn {
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+#page-main .blog-section .interactions .interaction .like-post-btn.on-progress {
+  opacity: 0.6;
+  pointer-events: none;
+}
+#page-main .blog-section .interactions .interaction .like-post-btn:hover {
+  transform: scale(1.1);
+}
+#page-main .blog-section .blog-viewing-section {
+  width: 90%;
+  background-color: white;
+  border-radius: 10px;
+}
+#page-main .blog-section .blog-viewing-section .blog-viewing {
+  padding: 30px 50px;
+}
+#page-main .blog-section .blog-viewing-section .blog-viewing .user-section {
+  display: flex;
+  column-gap: 8px;
+  align-items: center;
+}
+#page-main .blog-section .blog-viewing-section .blog-viewing .user-section .user-avatar {
+  height: 40px;
+  width: 40px;
+}
+#page-main .blog-section .blog-viewing-section .blog-viewing .user-section .user-info .name-of-user {
+  font-weight: 500;
+}
+#page-main .blog-section .blog-viewing-section .blog-viewing .user-section .user-info .date-of-post {
+  font-size: 0.8rem;
+  color: gray;
+}
+#page-main .blog-section .blog-viewing-section .blog-viewing .post-title {
+  width: 100%;
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+  margin-top: 20px;
+}
+#page-main .blog-section .blog-viewing-section .blog-viewing .hashtag {
+  display: flex;
+  margin-top: 10px;
+}
+#page-main .blog-section .blog-viewing-section .blog-viewing .main-content {
+  margin-top: 30px;
+  overflow-wrap: break-word;
+}
+#page-main .blog-section .blog-viewing-section .review-section {
+  margin-top: 20px;
+  border-top: 1px lightgray solid;
+  padding: 25px 50px;
+}
+#page-main .blog-section .blog-viewing-section .review-section .review-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+#page-main .blog-section .blog-viewing-section .review-section .made-review {
+  width: 100%;
+  text-align: center;
+  margin: 20px 0;
+}
+#page-main .blog-section .blog-viewing-section .review-section .made-review h2 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: gray;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px lightgray solid;
+}
+#page-main .blog-section .blog-viewing-section .review-section .comment-editor-section {
+  margin-top: 15px;
+}
+#page-main .blog-section .blog-viewing-section .review-section .comment-editor-section .comment-editor-box {
+  display: flex;
+  column-gap: 10px;
+}
+#page-main .blog-section .blog-viewing-section .review-section .comment-editor-section .comment-editor-box .user-avatar {
+  height: 25px;
+  width: 25px;
+  margin-top: 10px;
+}
+#page-main .blog-section .blog-viewing-section .review-section .comment-editor-section .comment-editor-box .comment-editor {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  resize: vertical;
+  height: 84px;
+  width: 100%;
+  outline: none;
+}
+#page-main .blog-section .blog-viewing-section .review-section .comment-editor-section .make-review-btn-box {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 30px;
+  margin-top: 15px;
+  width: 100%;
+}
+#page-main .blog-section .blog-viewing-section .review-section .comment-editor-section .make-review-btn-box .make-review-btn {
+  border-radius: 5px;
+  font-weight: 500;
+  background-color: white;
+  padding: 5px 20px;
+  border: 1.5px #cecece solid;
+}
+#page-main .blog-section .blog-viewing-section .review-section .comment-editor-section .make-review-btn-box .make-review-btn:hover {
+  background-color: black;
+  color: white;
+  border-color: black;
+}
+#page-main .blog-section .blog-viewing-section .review-section .comment-editor-section .make-review-btn-box .make-review-btn .spinner {
+  display: flex;
+  height: 25px;
+  width: 25px;
+}
+#page-main .blog-section .blog-viewing-section .review-section .comments-list .comment-item-card {
+  display: flex;
+  column-gap: 10px;
+  margin-top: 20px;
+}
+#page-main .blog-section .blog-viewing-section .review-section .comments-list .comment-item-card .user-avatar {
+  height: 25px;
+  width: 25px;
+  margin-top: 10px;
+}
+#page-main .blog-section .blog-viewing-section .review-section .comments-list .comment-item-card .comment-box {
+  padding: 10px 20px;
+  border: 1px #e2e2e2 solid;
+  border-radius: 5px;
+  width: 100%;
+}
+#page-main .blog-section .blog-viewing-section .review-section .comments-list .comment-item-card .comment-box .name-of-user-box {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+#page-main .blog-section .blog-viewing-section .review-section .comments-list .comment-item-card .comment-box .name-of-user-box .name-of-user {
+  font-weight: 500;
+}
+#page-main .blog-section .blog-viewing-section .review-section .comments-list .comment-item-card .comment-box .name-of-user-box .dash {
+  font-weight: 500;
+}
+#page-main .blog-section .blog-viewing-section .review-section .comments-list .comment-item-card .comment-box .name-of-user-box .date-of-review {
+  color: gray;
+  font-size: 0.9rem;
+}
+#page-main .blog-section .blog-viewing-section .review-section .comments-list .comment-item-card .comment-box .comment-of-user {
+  margin-top: 5px;
+}
+
+/*# sourceMappingURL=view-blog-page.css.map */

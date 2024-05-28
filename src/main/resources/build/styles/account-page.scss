@@ -1,0 +1,119 @@
+$blgtm-account-page-bgcl: rgb(241 241 241);
+
+body {
+    background-color: $blgtm-account-page-bgcl;
+}
+
+#page-main {
+    .page-title {
+        margin: 15px 10px;
+
+        h2 {
+            display: flex;
+            column-gap: 15px;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-bottom: 2px #dbdbdb solid;
+            padding-bottom: 10px;
+            padding-left: 40px;
+
+            svg {
+                height: 25px;
+                width: 25px;
+            }
+        }
+    }
+
+    .create-new-post-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 15px;
+        padding: 0px 10px;
+
+        .create-new-post-btn {
+            display: flex;
+            column-gap: 8px;
+            color: white;
+            font-weight: 500;
+            padding: 5px 10px;
+            background-color: var(--blgtm-regular-orange-cl);
+            border-radius: 5px;
+
+            svg {
+                height: 25px;
+                width: 25px;
+            }
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .nav-and-main-content {
+        display: flex;
+        column-gap: 10px;
+        margin-top: 5px;
+        width: 100%;
+        padding: 5px 10px;
+        box-sizing: border-box;
+
+        .user-nav-side-bar {
+            width: 20%;
+
+            .nav-item {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: white;
+                border-radius: 5px;
+                column-gap: 8px;
+                width: 100%;
+                padding: 10px 20px;
+                font-weight: 500;
+                margin-top: 10px;
+                text-decoration: none;
+                color: black;
+                font-style: normal;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+
+                svg {
+                    height: 22px;
+                    width: 22px;
+                }
+
+                .spinner {
+                    height: 25px;
+                    width: 25px;
+                }
+            }
+
+            a.nav-item:nth-of-type(1) {
+                margin-top: 0;
+            }
+        }
+
+        .main-content-container {
+            background-color: white;
+            border-radius: 5px;
+            width: 80%;
+
+            .welcome-section {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+
+                h2 {
+                    font-weight: bold;
+                    color: gray;
+                }
+            }
+        }
+    }
+}

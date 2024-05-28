@@ -1,0 +1,5 @@
+.dashboard {
+    color: var(--blgtm-regular-orange-cl);
+    font-weight: bold;
+    padding: 10px;
+}

@@ -1,0 +1,123 @@
+div,
+h1,
+h2,
+p,
+a {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+#internal-error {
+    position: relative;
+    height: 100vh;
+}
+
+#internal-error .internal-error {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.internal-error {
+    max-width: 520px;
+    width: 100%;
+    line-height: 1.4;
+}
+
+.internal-error > div:first-child {
+    padding-left: 200px;
+    padding-top: 12px;
+    height: 170px;
+    margin-bottom: 20px;
+}
+
+.internal-error .internal-error-500 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 170px;
+    height: 170px;
+    background: #e01818;
+    border-radius: 7px;
+    -webkit-box-shadow: 0 0 0 10px #e01818 inset, 0 0 0 20px #fff inset;
+    box-shadow: 0 0 0 10px #e01818 inset, 0 0 0 20px #fff inset;
+}
+
+.internal-error .internal-error-500 h1 {
+    font-family: chango, cursive;
+    color: #fff;
+    font-size: 118px;
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    display: inline-block;
+    height: 60px;
+    line-height: 60px;
+}
+
+.internal-error h2 {
+    font-family: chango, cursive;
+    font-size: 68px;
+    color: #222;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1.1;
+}
+
+.internal-error p {
+    font-family: montserrat, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #222;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.internal-error a {
+    display: block;
+    font-family: montserrat, sans-serif;
+    color: #e01818;
+    font-weight: 400;
+    text-decoration: none;
+    transition: text-decoration 0.2s;
+    font-style: italic;
+    margin-top: 5px;
+}
+
+.internal-error a:hover {
+    text-decoration: underline;
+}
+
+@media only screen and (max-width: 480px) {
+    .internal-error {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .internal-error > div:first-child {
+        padding: 0;
+        height: auto;
+    }
+
+    .internal-error .internal-error-500 {
+        position: relative;
+        margin-bottom: 15px;
+    }
+
+    .internal-error h2 {
+        font-size: 42px;
+    }
+}

@@ -1,0 +1,184 @@
+.form-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+    width: clamp(300px, 50%, 600px);
+    margin: auto;
+    margin-top: 30px;
+    padding-bottom: 40px;
+}
+
+.form-section .app-name-wrapper {
+    width: fit-content;
+    font-size: 2rem;
+}
+
+.form-section .title {
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+.form-section .description {
+    font-size: 1rem;
+    font-style: italic;
+}
+
+.form-section .form {
+    width: 100%;
+}
+
+.form-section .form .horizon-bar {
+    width: 100%;
+    position: relative;
+    margin: 2rem 0;
+    height: 1px;
+    background-color: var(--blgtm-divider-cl);
+}
+
+.form-section .form .horizon-bar .text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    color: var(--blgtm-regular-gray-cl);
+    background-color: var(--blgtm-regular-white-cl);
+    padding: 0 10px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group .message {
+    color: var(--blgtm-regular-red-cl);
+    margin-top: 5px;
+    padding: 0 10px;
+    font-size: 0.9rem;
+}
+
+.form-group label {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.form-group input {
+    margin-top: 5px;
+    padding: 10px;
+    outline: none;
+    border: 2px solid var(--blgtm-regular-lightgray-cl);
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1.05rem;
+}
+
+.form-group.password input {
+    padding-right: 50px;
+}
+
+.form-group input:hover {
+    outline: 1.5px solid var(--blgtm-regular-lightgray-cl);
+}
+
+.form-group input:focus {
+    border-left-width: 7px;
+}
+
+.form-group .required-dot {
+    color: var(--blgtm-regular-red-cl);
+}
+
+.form-group .input-wrapper {
+    position: relative;
+}
+
+.form-group .input-wrapper .password-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-40%);
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.form-group .input-wrapper .password-btn.shown {
+    display: none;
+}
+
+.form-group .input-wrapper .password-btn:hover {
+    transform: translateY(-40%) scale(1.2);
+}
+
+.form-group select {
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    margin-left: 5px;
+}
+
+.form-group select option {
+    font-size: 1rem;
+}
+
+.form-group.gender {
+    margin-top: 10px;
+}
+
+.form-section .form .submit-btn {
+    background-color: var(--blgtm-regular-orange-cl);
+    padding: 12px;
+    color: var(--blgtm-regular-white-cl);
+    border: 3px solid var(--blgtm-regular-orange-cl);
+    border-radius: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    font-weight: bold;
+    font-size: 1.05rem;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.form-section .form .submit-btn:hover {
+    background-color: var(--blgtm-regular-white-cl);
+    color: var(--blgtm-regular-orange-cl);
+}
+
+.terms-of-use-reminder {
+    margin-top: 20px;
+    width: 70%;
+    font-style: italic;
+    color: var(--blgtm-regular-gray-cl);
+}
+
+.terms-of-use-reminder a {
+    color: var(--blgtm-regular-orange-cl);
+}
+
+.terms-of-use-reminder a:hover {
+    text-decoration: underline;
+}
+
+.form-section .go-to-login {
+    display: flex;
+    justify-content: center;
+    column-gap: 5px;
+    border-top: 1px solid var(--blgtm-divider-cl);
+    padding-top: 20px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.form-section .go-to-login .go-to-login-btn {
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--blgtm-regular-orange-cl);
+}
+
+.form-section .go-to-login .go-to-login-btn:hover {
+    text-decoration: underline;
+}

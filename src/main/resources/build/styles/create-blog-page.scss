@@ -1,0 +1,248 @@
+body {
+    background-color: var(--blgtm-regular-lightgray-cl);
+}
+#page-main {
+    margin-left: 80px;
+    width: fit-content;
+    margin-bottom: 20px;
+    position: relative;
+}
+.editor-container {
+    background-color: var(--blgtm-regular-white-cl);
+    width: 820px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding-bottom: 20px;
+    position: relative;
+    box-shadow: 0 0 0 1px var(--blgtm-card-border-default-cl);
+    overflow-y: auto;
+    height: 385px;
+    .title-container {
+        padding: 32px 64px;
+        height: max-content;
+        .add-title {
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin: 0;
+            outline: none;
+            width: 100%;
+            box-shadow: none;
+            resize: none;
+            transition: none;
+            font-size: 3rem;
+            font-weight: bold;
+            margin-top: 30px;
+        }
+        .add-hashtag {
+            margin-top: 10px;
+            input {
+                font-size: 1rem;
+                color: var(--blgtm-regular-gray-cl);
+                outline: none;
+                width: 100%;
+                border: none;
+            }
+        }
+    }
+    .tips {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+}
+#quill-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 90;
+}
+#quill-editor {
+    border: none;
+    padding-bottom: 30px;
+    padding-top: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 14px;
+    height: fit-content;
+    .ql-editor {
+        position: relative;
+        z-index: 80;
+    }
+    .ql-font-Arial {
+        font-family: var(--blgtm-arial-fontf);
+    }
+    .ql-font-Roboto {
+        font-family: var(--blgtm-roboto-regular-fontf);
+    }
+    .ql-font-Times-New-Roman {
+        font-family: var(--blgtm-times-new-roman-fontf);
+    }
+    .ql-font-Work-Sans {
+        font-family: var(--blgtm-default-fontf);
+    }
+    .ql-font-Poppins {
+        font-family: var(--blgtm-poppins-regular-fontf);
+    }
+}
+.ql-toolbar {
+    &.ql-snow {
+        border: none;
+        background-color: var(--blgtm-regular-blurgray-cl);
+        .ql-picker-options {
+            .ql-picker-item {
+                &::before {
+                    content: attr(data-value) !important;
+                }
+            }
+        }
+        .ql-font {
+            span[data-value="Arial"]::before {
+                font-family: var(--blgtm-arial-fontf);
+            }
+            span[data-value="Roboto"]::before {
+                font-family: var(--blgtm-roboto-regular-fontf);
+            }
+            span[data-value="Times-New-Roman"]::before {
+                font-family: var(--blgtm-times-new-roman-fontf);
+            }
+            span[data-value="Work-Sans"]::before {
+                font-family: var(--blgtm-default-fontf);
+            }
+            span[data-value="Poppins"]::before {
+                font-family: var(--blgtm-poppins-regular-fontf);
+            }
+            &.ql-picker {
+                width: auto;
+                min-width: 108px;
+                .ql-picker-label {
+                    &::before {
+                        padding-right: 20px;
+                    }
+                }
+            }
+        }
+        .ql-picker {
+            &.ql-size {
+                .ql-picker-item[data-value="11px"]::before {
+                    content: "Small" !important;
+                    font-size: 11px !important;
+                }
+                .ql-picker-item[data-value="14px"]::before {
+                    content: "Normal" !important;
+                    font-size: 14px !important;
+                }
+                .ql-picker-item[data-value="18px"]::before {
+                    content: "Large" !important;
+                    font-size: 18px !important;
+                }
+                .ql-picker-item[data-value="24px"]::before {
+                    content: "Big" !important;
+                    font-size: 24px !important;
+                }
+                .ql-picker-item[data-value="30px"]::before {
+                    content: "Huge" !important;
+                    font-size: 30px !important;
+                }
+            }
+        }
+    }
+}
+.ql-toolbar.ql-snow .ql-picker.ql-font .ql-picker-label::before,
+.ql-toolbar.ql-snow .ql-picker.ql-font .ql-picker-item::before {
+    content: attr(data-value) !important;
+}
+.ql-toolbar.ql-snow .ql-formats button,
+.ql-toolbar.ql-snow .ql-formats span.ql-picker {
+    position: relative;
+}
+.quill-toolbar-tooltip {
+    position: absolute;
+    top: calc(100% + 10px);
+    transform: translateX(-50%);
+    left: 50%;
+    background-color: black;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    width: max-content;
+    text-align: center;
+    max-width: 100px;
+    z-index: 99;
+    &.hidden {
+        display: none;
+    }
+}
+.ql-color {
+    &.ql-picker {
+        .ql-picker-options {
+            .ql-picker-item {
+                &::before {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+.publish-blog-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    width: 100%;
+    .publish-blog-btn {
+        border: 2px var(--blgtm-regular-orange-cl) solid;
+        background-color: var(--blgtm-regular-orange-cl);
+        border-radius: 5px;
+        font-weight: bold;
+        color: var(--blgtm-regular-white-cl);
+        padding: 10px 20px;
+        transition: background-color 0.1s, color 0.1s;
+        cursor: pointer;
+        &:hover {
+            background-color: var(--blgtm-regular-white-cl);
+            color: var(--blgtm-regular-orange-cl);
+        }
+        & .spinner {
+            display: flex;
+            color: white;
+            height: 25px;
+            width: 25px;
+        }
+    }
+}
+.close-editor-btn {
+    display: flex;
+    border: none;
+    background-color: var(--blgtm-regular-white-cl);
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    padding: 5px;
+    left: calc(100% + 5px);
+    box-shadow: 0 0 0 1px var(--blgtm-card-border-default-cl);
+    transition: background-color 0.2s;
+    cursor: pointer;
+    &:hover {
+        background-color: var(--blgtm-regular-red-cl);
+        svg {
+            path {
+                fill: var(--blgtm-regular-white-cl);
+            }
+        }
+    }
+    svg {
+        height: 30px;
+        width: 30px;
+        margin: auto;
+        path {
+            transition: fill 0.2s;
+        }
+    }
+}
+.editor-counter-container {
+    bottom: 0;
+    left: 0;
+    color: var(--blgtm-regular-gray-cl);
+    margin-top: 5px;
+    margin-left: 10px;
+}

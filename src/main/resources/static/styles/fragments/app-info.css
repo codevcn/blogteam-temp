@@ -1,0 +1,8 @@
+.app-name {
+    font-family: var(--blgtm-poppins-bold-fontf);
+    font-weight: bold;
+}
+
+.app-name span {
+    color: var(--blgtm-regular-orange-cl);
+}

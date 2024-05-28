@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link th:href="@{/styles/libs/SweetAlert2.css}" rel="stylesheet" />
+    <link th:href="@{/styles/libs/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/styles/global/global.css}" rel="stylesheet" />
+    <link th:href="@{/styles/fragments/fragments.css}" rel="stylesheet" />
+    <link th:href="@{/styles/view-blog-page.css}" rel="stylesheet" />
+    <title>[[${appName}]]</title>
+</head>
+
+<body>
+    <div th:replace="~{fragments/nav-bar.html :: nav-bar}"></div>
+
+    <main id="page-main">
+        <section class="blog-section">
+            <section class="interactions">
+                <div class="likes-count interaction">
+                    <div class="like-post-btn" onclick="likePostHandler(this)" th:data-blog-liked="${blog.liked}">
+                        <svg th:unless="${blog.liked}" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                            class="bi bi-star" viewBox="0 0 16 16">
+                            <path
+                                d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z" />
+                        </svg>
+                        <svg th:if="${blog.liked}" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                            class="bi bi-star-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                        </svg>
+                    </div>
+                    <span class="likes-count-display" th:text="${blog.likesCount}"
+                        th:data-blog-likesCount="${blog.likesCount}" title="Lượt thích"></span>
+                </div>
+                <div class="reviews-count interaction">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chat-dots"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
+                        <path
+                            d="m2.165 15.803.02-.004c1.83-.363 2.948-.842 3.468-1.105A9 9 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.4 10.4 0 0 1-.524 2.318l-.003.011a11 11 0 0 1-.244.637c-.079.186.074.394.273.362a22 22 0 0 0 .693-.125m.8-3.108a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6-3.004 6-7 6a8 8 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a11 11 0 0 0 .398-2" />
+                    </svg>
+                    <span class="reviews-count-display" th:text="${blog.reviewsCount}"
+                        th:data-blog-reviewsCount="${blog.reviewsCount}" title="Lượt bình luận"></span>
+                </div>
+            </section>
+            <section class="blog-viewing-section">
+                <section class="blog-viewing">
+                    <div class="user-section">
+                        <img class="user-avatar" th:if="${blog.user.avatar}" th:src="${blog.user.avatar}"
+                            alt="Ảnh đại diện" />
+                        <img class="user-avatar" th:unless="${blog.user.avatar}" src="/imgs/user-avatar-deafult.png"
+                            alt="Ảnh đại diện" />
+                        <div class="user-info">
+                            <div class="name-of-user" th:text="${blog.user.fullName}"></div>
+                            <div class="date-of-post" th:text="${blog.createdAt}"></div>
+                        </div>
+                    </div>
+                    <h2 class="post-title" th:text="${blog.title}"></h2>
+                    <div class="hashtag">
+                        <span>#</span>
+                        <span th:text="${blog.hashtag}"></span>
+                    </div>
+                    <div class="main-content" th:utext="${blog.mainContent}"></div>
+                </section>
+                <section class="review-section">
+                    <h2 class="review-title">Bình luận</h2>
+                    <section th:if="${blog.madeReview}" class="made-review">
+                        <h2>Bạn đã bình luận.</h2>
+                    </section>
+                    <section th:unless="${blog.madeReview}" class="comment-editor-section">
+                        <div class="comment-editor-box">
+                            <img class="user-avatar" th:if="${blog.user.avatar}" th:src="${blog.user.avatar}"
+                                alt="Ảnh đại diện" />
+                            <img class="user-avatar" th:unless="${blog.user.avatar}" src="/imgs/user-avatar-deafult.png"
+                                alt="Ảnh đại diện" />
+                            <textarea class="comment-editor" placeholder="Viết bình luận của bạn..."></textarea>
+                        </div>
+                        <div class="make-review-btn-box">
+                            <span></span>
+                            <button class="make-review-btn" onclick="makeReviewHandler(this)">
+                                <span>Gửi bình luận</span>
+                            </button>
+                        </div>
+                    </section>
+                    <div class="comments-list">
+                        <div th:each="review : ${blog.reviews}" class="comment-item-card">
+                            <img class="user-avatar" th:if="${review.user.avatar}" th:src="${review.user.avatar}"
+                                alt="Ảnh đại diện" />
+                            <img class="user-avatar" th:unless="${review.user.avatar}"
+                                src="/imgs/user-avatar-deafult.png" alt="Ảnh đại diện" />
+                            <div class="comment-box">
+                                <div class="name-of-user-box">
+                                    <span class="name-of-user" th:text="${review.user.fullName}"></span>
+                                    <span class="dash">-</span>
+                                    <span class="date-of-review" th:text="${review.createdAt}"></span>
+                                </div>
+                                <div class="comment-of-user" th:text="${review.comment}"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </section>
+    </main>
+
+    <script th:src="@{/js/libs/SweetAlert2.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/libs/dayjs.min.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/libs/bootstrap.min.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/libs/popper.min.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/libs/axios.min.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/utils/constants.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/utils/apis.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/utils/helpers.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/view-blog-page.js}" charset="UTF-8" defer></script>
+</body>
+
+</html>

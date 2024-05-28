@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link th:href="@{/styles/global/global.css}" rel="stylesheet" />
+    <link th:href="@{/styles/fragments/fragments.css}" rel="stylesheet" />
+    <link th:href="@{/styles/libs/SweetAlert2.css}" rel="stylesheet" />
+    <link th:href="@{/styles/register-page.css}" rel="stylesheet" />
+    <title>[[${appName}]]</title>
+</head>
+
+<body>
+    <div th:replace="~{fragments/nav-bar.html :: nav-bar}"></div>
+
+    <div style="
+                position: fixed;
+                top: 150px;
+                right: 50px;
+                border-radius: 50%;
+                border: 2px black solid;
+                padding: 10px;
+                cursor: pointer;
+            " onclick="auto_fill_form(true)">
+        Auto
+    </div>
+
+    <div id="layout">
+        <div class="form-section">
+            <div class="app-name-wrapper">
+                <span th:replace="~{fragments/app-info.html :: app-name}"></span>
+            </div>
+
+            <div class="title">
+                Tham gia cộng đồng <span th:replace="~{fragments/app-info.html :: app-name}"></span>
+            </div>
+
+            <div class="description">Thỏa sức sáng tạo và xuất bản những ý tưởng táo bạo của bạn</div>
+
+            <form class="form" action="/register" method="post" onsubmit="return validate_form()">
+                <div class="horizon-bar">
+                    <div class="text">Đăng ký</div>
+                </div>
+
+                <div class="form-group full-name">
+                    <label for="fullName">Tên đầy đủ</label>
+                    <span class="required-dot">*</span>
+                    <br />
+                    <input type="text" id="fullName" name="fullName" placeholder="Nhập tên đầy đủ của bạn..."
+                        th:value="${fullName}" oninput="clearMessage(this)" />
+                    <p class="message"></p>
+                </div>
+
+                <div class="form-group email">
+                    <label for="email">Email</label>
+                    <span class="required-dot">*</span>
+                    <br />
+                    <input type="text" id="email" name="email" th:value="${email}" placeholder="Nhập email của bạn..."
+                        oninput="clearMessage(this)" />
+                    <p class="message"></p>
+                </div>
+
+                <div class="form-group password">
+                    <label for="password">Mật khẩu</label>
+                    <span class="required-dot">*</span>
+                    <br />
+                    <div class="input-wrapper">
+                        <input type="password" id="password" name="password" placeholder="Nhập mật khẩu của bạn..."
+                            oninput="clearMessage(this)" />
+                        <div class="password-btn hidden" onclick="hide_show_password(true)(this)">
+                            <svg th:replace="~{fragments/icons.html :: eye-closed-icon}"></svg>
+                        </div>
+                        <div class="password-btn shown" onclick="hide_show_password(false)(this)">
+                            <svg th:replace="~{fragments/icons.html :: eye-opened-icon}"></svg>
+                        </div>
+                    </div>
+                    <p class="message"></p>
+                </div>
+
+                <div class="form-group retype-password">
+                    <label for="retypePassword">Nhập lại mật khẩu</label>
+                    <span class="required-dot">*</span>
+                    <br />
+                    <div class="input-wrapper">
+                        <input type="password" id="retypePassword" name="retypePassword"
+                            placeholder="Nhập mật khẩu của bạn..." oninput="clearMessage(this)" />
+                        <div class="password-btn hidden" onclick="hide_show_password(true)(this)">
+                            <svg th:replace="~{fragments/icons.html :: eye-closed-icon}"></svg>
+                        </div>
+                        <div class="password-btn shown" onclick="hide_show_password(false)(this)">
+                            <svg th:replace="~{fragments/icons.html :: eye-opened-icon}"></svg>
+                        </div>
+                    </div>
+                    <p class="message"></p>
+                </div>
+
+                <div class="form-group gender">
+                    <label for="gender">Giới tính</label>
+                    <span class="required-dot">*</span>
+                    <select id="gender" name="gender">
+                        <option value="male" selected>Nam</option>
+                        <option value="female">Nữ</option>
+                        <option value="other">Khác</option>
+                    </select>
+                </div>
+
+                <button class="submit-btn" type="submit">Đăng ký</button>
+            </form>
+
+            <div class="terms-of-use-reminder">
+                Bằng cách đăng ký, bạn đồng ý với các
+                <a href="/terms-of-use">chính sách và điều khoản</a> của chúng tôi.
+            </div>
+
+            <div class="go-to-login">
+                <span>Bạn đã là thành viên?</span>
+                <a href="/login" class="go-to-login-btn">Đăng nhập.</a>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{/js/libs/SweetAlert2.js}" charset="UTF-8"></script>
+    <script th:src="@{/js/utils/constants.js}" charset="UTF-8"></script>
+    <script th:src="@{/js/utils/helpers.js}" charset="UTF-8"></script>
+    <script th:src="@{/js/register-page.js}" charset="UTF-8"></script>
+
+    <script th:inline="javascript" charset="UTF-8">
+        /*<![CDATA[*/
+        let error = /*[[${error}]]*/ null
+        /*]]>*/
+        if (error !== null) {
+            Toastify.error({
+                title: "Đăng ký thất bại",
+                msg: error,
+            })
+        }
+
+        /*<![CDATA[*/
+        let gender_selected = /*[[${gender}]]*/ null
+        /*]]>*/
+        if (gender_selected) {
+            const gender_field = (document
+                .querySelector(".form-group.gender")
+                .querySelector("select").value = gender_selected)
+        }
+    </script>
+</body>
+
+</html>

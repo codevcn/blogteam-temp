@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link th:href="@{/styles/libs/SweetAlert2.css}" rel="stylesheet" />
+    <link th:href="@{/styles/libs/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/styles/global/global.css}" rel="stylesheet" />
+    <link th:href="@{/styles/fragments/fragments.css}" rel="stylesheet" />
+    <link th:href="@{/styles/account-page.css}" rel="stylesheet" />
+    <title>[[${appName}]]</title>
+</head>
+
+<body>
+    <div th:replace="~{fragments/nav-bar.html :: nav-bar}"></div>
+
+    <main id="page-main">
+        <section class="page-title">
+            <h2>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-person-square"
+                    viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                    <path
+                        d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z" />
+                </svg>
+                <span>Trang tài khoản</span>
+            </h2>
+        </section>
+        <section class="create-new-post-section">
+            <span></span>
+            <a href="/blog/create" class="create-new-post-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-plus-square-fill"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0" />
+                </svg>
+                <span>Tạo một bài đăng</span>
+            </a>
+        </section>
+        <section class="nav-and-main-content">
+            <div class="user-nav-side-bar">
+                <a class="nav-item" href="/blog/my-posts">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-list-columns-reverse"
+                        viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M0 .5A.5.5 0 0 1 .5 0h2a.5.5 0 0 1 0 1h-2A.5.5 0 0 1 0 .5m4 0a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1h-10A.5.5 0 0 1 4 .5m-4 2A.5.5 0 0 1 .5 2h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m4 0a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m-4 2A.5.5 0 0 1 .5 4h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m4 0a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5m-4 2A.5.5 0 0 1 .5 6h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m4 0a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 0 1h-8a.5.5 0 0 1-.5-.5m-4 2A.5.5 0 0 1 .5 8h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m4 0a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 0 1h-8a.5.5 0 0 1-.5-.5m-4 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m4 0a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1h-10a.5.5 0 0 1-.5-.5m-4 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m4 0a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5m-4 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m4 0a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5" />
+                    </svg>
+                    <span>Bài đăng của bạn</span>
+                </a>
+                <a class="nav-item" href="/account/profile">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-person-fill"
+                        viewBox="0 0 16 16">
+                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                    </svg>
+                    <span>Thông tin tài khoản</span>
+                </a>
+                <button class="nav-item logout" onclick="logoutUserHandler(this)">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-box-arrow-right"
+                        viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z" />
+                        <path fill-rule="evenodd"
+                            d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
+                    </svg>
+                    <span>Đăng xuất</span>
+                </button>
+            </div>
+            <div class="main-content-container">
+                <div class="welcome-section">
+                    <h2>
+                        <span>Chào mừng</span>
+                        <span th:text="${nameOfUser}"></span>
+                    </h2>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script th:src="@{/js/libs/SweetAlert2.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/libs/bootstrap.min.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/libs/popper.min.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/libs/axios.min.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/utils/constants.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/utils/apis.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/utils/helpers.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/account-page.js}" charset="UTF-8" defer></script>
+</body>
+
+</html>

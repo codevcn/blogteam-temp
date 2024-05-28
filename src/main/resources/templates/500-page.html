@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link th:href="@{/styles/500-page.css}" rel="stylesheet" />
+    <title>[[${appName}]]</title>
+</head>
+
+<body>
+    <div id="internal-error">
+        <div class="internal-error">
+            <div>
+                <div class="internal-error-500">
+                    <h1>!</h1>
+                </div>
+                <h2>Error<br />500</h2>
+            </div>
+            <p>
+                <span th:if="${error} == null">CÓ VẺ NHƯ ĐÃ XẢY RA VẤN ĐỀ GÌ ĐÓ</span>
+                <span th:unless="${error} == null">[[${error}]].</span>
+                <br />
+                <a href="/" class="back-to-homepage">QUAY VỀ TRANG CHỦ</a>
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>

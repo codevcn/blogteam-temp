@@ -1,0 +1,36 @@
+.introduction {
+    padding: 40px 40px 100px 40px;
+    position: relative;
+}
+
+.introduction .hello {
+    font-size: 18px;
+}
+
+.introduction .title {
+    font-size: 10vw;
+    font-family: var(--blgtm-poppins-bold-fontf);
+    margin: 20px 0 40px;
+}
+
+.introduction .intro {
+    max-width: 50%;
+}
+
+.shopping-now-btn {
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    animation: shopping-now 2s infinite backwards;
+    cursor: pointer;
+    left: 50px;
+    bottom: 0;
+}
+
+.most-searching {
+    margin: 40px 0 30px;
+    width: 100%;
+    text-align: center;
+    font-family: var(--blgtm-poppins-bold-fontf);
+    font-size: 40px;
+}

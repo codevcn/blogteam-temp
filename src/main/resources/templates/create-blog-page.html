@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link th:href="@{/styles/libs/SweetAlert2.css}" rel="stylesheet" />
+    <link th:href="@{/styles/libs/QuillJS.snow.css}" rel="stylesheet" />
+    <link th:href="@{/styles/libs/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/styles/global/global.css}" rel="stylesheet" />
+    <link th:href="@{/styles/fragments/fragments.css}" rel="stylesheet" />
+    <link th:href="@{/styles/create-blog-page.css}" rel="stylesheet" />
+    <title>[[${appName}]]</title>
+</head>
+
+<body>
+    <div th:replace="~{fragments/nav-bar.html :: nav-bar}"></div>
+
+    <main id="page-main">
+        <div class="editor-container">
+            <div class="title-container">
+                <textarea class="add-title" autocomplete="off" placeholder="Thêm Tiêu đề cho bài đăng của bạn..."
+                    rows="2" minlength="2" maxlength="100"></textarea>
+
+                <div class="add-hashtag">
+                    <input type="text" placeholder="Thêm hashtag cho bài đăng của bạn..." />
+                </div>
+            </div>
+
+            <div id="quill-toolbar">
+                <span class="ql-formats">
+                    <select class="ql-font" data-tooltip="Font chữ">
+                        <option value="Work-Sans"></option>
+                        <option value="Roboto"></option>
+                        <option value="Times-New-Roman"></option>
+                        <option value="Poppins"></option>
+                        <option value="Arial"></option>
+                    </select>
+                    <select class="ql-size" data-tooltip="Cỡ chữ">
+                        <option value="11px"></option>
+                        <option value="14px"></option>
+                        <option value="18px"></option>
+                        <option value="24px"></option>
+                        <option value="30px"></option>
+                    </select>
+                </span>
+                <span class="ql-formats">
+                    <button class="ql-bold" data-tooltip="In đậm"></button>
+                    <button class="ql-italic" data-tooltip="Nghiêng"></button>
+                    <button class="ql-underline" data-tooltip="Gạch dưới"></button>
+                    <button class="ql-strike" data-tooltip="Sọc ngang"></button>
+                </span>
+                <span class="ql-formats">
+                    <select class="ql-color" data-tooltip="Màu văn bản"></select>
+                </span>
+                <span class="ql-formats">
+                    <button class="ql-script" value="sub" data-tooltip="Kí tự mũ"></button>
+                    <button class="ql-script" value="super" data-tooltip="Kí tự chỉ số"></button>
+                </span>
+                <span class="ql-formats">
+                    <button class="ql-blockquote" data-tooltip="Lời trích"></button>
+                </span>
+                <span class="ql-formats">
+                    <button class="ql-list" value="ordered" data-tooltip="Danh sách đánh số"></button>
+                    <button class="ql-list" value="bullet" data-tooltip="Danh sách đánh dấu"></button>
+                </span>
+                <span class="ql-formats">
+                    <button class="ql-link" data-tooltip="Thêm liên kết"></button>
+                </span>
+                <span class="ql-formats">
+                    <button class="ql-clean" data-tooltip="Xóa định dạng"></button>
+                </span>
+            </div>
+
+            <div id="quill-editor"></div>
+        </div>
+
+        <div class="publish-blog-container">
+            <div class="editor-counter-container">
+                <span class="editor-counter">0 / 10000</span>
+            </div>
+            <button class="publish-blog-btn" onclick="submit_publish_blog()">Xuất bản</button>
+        </div>
+
+        <a class="close-editor-btn" href="/account">
+            <svg th:replace="~{fragments/icons.html :: close-icon}"></svg>
+        </a>
+    </main>
+
+    <script th:src="@{/js/libs/QuillJS.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/libs/SweetAlert2.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/libs/bootstrap.min.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/libs/popper.min.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/libs/axios.min.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/utils/constants.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/utils/apis.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/utils/helpers.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/create-blog-page.js}" charset="UTF-8" defer></script>
+</body>
+
+</html>

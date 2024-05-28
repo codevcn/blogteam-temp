@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link th:href="@{/styles/libs/SweetAlert2.css}" rel="stylesheet" />
+    <link th:href="@{/styles/libs/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/styles/global/global.css}" rel="stylesheet" />
+    <link th:href="@{/styles/fragments/fragments.css}" rel="stylesheet" />
+    <link th:href="@{/styles/search-blog-page.css}" rel="stylesheet" />
+    <title>[[${appName}]]</title>
+</head>
+
+<body>
+    <div th:replace="~{fragments/nav-bar.html :: nav-bar}"></div>
+
+    <main id="page-main">
+        <section class="search-bar">
+            <div class="input-wrapper">
+                <input type="text" placeholder="Nhập tiêu để bài đăng hoặc hashtag..." oninput="searchBlog(this)" />
+                <div class="search-icon" onclick="searchBlog(null)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-search" viewBox="0 0 16 16">
+                        <path
+                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                    </svg>
+                </div>
+            </div>
+            <div class="search-status"></div>
+        </section>
+        <section class="result-list">
+            <h2 class="unsearch">Tìm kiếm bài đăng.</h2>
+        </section>
+    </main>
+
+    <script th:src="@{/js/libs/SweetAlert2.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/libs/dayjs.min.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/libs/bootstrap.min.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/libs/popper.min.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/libs/axios.min.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/utils/constants.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/utils/apis.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/utils/helpers.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/search-blog-page.js}" charset="UTF-8" defer></script>
+</body>
+
+</html>

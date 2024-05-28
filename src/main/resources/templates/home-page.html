@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link th:href="@{/styles/libs/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/styles/global/global.css}" rel="stylesheet" />
+    <link th:href="@{/styles/fragments/fragments.css}" rel="stylesheet" />
+    <link th:href="@{/styles/home-page.css}" rel="stylesheet" />
+    <title>[[${appName}]]</title>
+</head>
+
+<body>
+    <div th:replace="~{fragments/nav-bar.html :: nav-bar}"></div>
+
+    <div id="layout">
+        <div class="introduction">
+            <p class="hello">Chào bạn! Chào mừng đến với</p>
+            <p class="title">
+                <span th:replace="~{fragments/app-info.html :: app-name}"></span>
+            </p>
+            <p class="intro">
+                Chúng tôi tự hào giới thiệu <b>Blogteam</b>, một không gian trực tuyến năng động dành cho
+                cộng đồng yêu thích viết blog và chia sẻ kiến thức. Ở đây, chúng tôi tin rằng mỗi người
+                đều có câu chuyện riêng, và chúng tôi muốn tạo ra một nền tảng để mọi người có thể kể lên
+                những trải nghiệm, ý kiến, và kiến thức của mình. Hãy thỏa sức vùng vẫy nhé!
+            </p>
+
+            <div class="shopping-now-btn" onclick="getStartedNow()">
+                <svg th:replace="~{fragments/icons.html :: arrow-down-icon}"></svg>
+            </div>
+        </div>
+
+        <h2 class="most-searching">Tìm kiếm nhiều nhất</h2>
+    </div>
+
+    <script th:src="@{/js/libs/bootstrap.min.js}" charset="UTF-8" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script th:src="@{/js/home-page.js}" charset="UTF-8" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+body {
+  background-color: rgb(241, 241, 241);
+}
+
+#page-main .page-title {
+  margin: 15px 10px;
+}
+#page-main .page-title h2 {
+  display: flex;
+  column-gap: 15px;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-bottom: 2px #dbdbdb solid;
+  padding-bottom: 10px;
+  padding-left: 40px;
+}
+#page-main .page-title h2 svg {
+  height: 25px;
+  width: 25px;
+}
+#page-main .create-new-post-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  padding: 0px 10px;
+}
+#page-main .create-new-post-section .create-new-post-btn {
+  display: flex;
+  column-gap: 8px;
+  color: white;
+  font-weight: 500;
+  padding: 5px 10px;
+  background-color: var(--blgtm-regular-orange-cl);
+  border-radius: 5px;
+}
+#page-main .create-new-post-section .create-new-post-btn svg {
+  height: 25px;
+  width: 25px;
+}
+#page-main .create-new-post-section .create-new-post-btn:hover {
+  text-decoration: underline;
+}
+#page-main .nav-and-main-content {
+  display: flex;
+  column-gap: 10px;
+  margin-top: 5px;
+  width: 100%;
+  padding: 5px 10px;
+  box-sizing: border-box;
+}
+#page-main .nav-and-main-content .user-nav-side-bar {
+  width: 20%;
+}
+#page-main .nav-and-main-content .user-nav-side-bar .nav-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 5px;
+  column-gap: 8px;
+  width: 100%;
+  padding: 10px 20px;
+  font-weight: 500;
+  margin-top: 10px;
+  text-decoration: none;
+  color: black;
+  font-style: normal;
+}
+#page-main .nav-and-main-content .user-nav-side-bar .nav-item:hover {
+  text-decoration: underline;
+}
+#page-main .nav-and-main-content .user-nav-side-bar .nav-item svg {
+  height: 22px;
+  width: 22px;
+}
+#page-main .nav-and-main-content .user-nav-side-bar .nav-item .spinner {
+  height: 25px;
+  width: 25px;
+}
+#page-main .nav-and-main-content .user-nav-side-bar a.nav-item:nth-of-type(1) {
+  margin-top: 0;
+}
+#page-main .nav-and-main-content .main-content-container {
+  background-color: white;
+  border-radius: 5px;
+  width: 80%;
+}
+#page-main .nav-and-main-content .main-content-container .welcome-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+#page-main .nav-and-main-content .main-content-container .welcome-section h2 {
+  font-weight: bold;
+  color: gray;
+}
+
+/*# sourceMappingURL=account-page.css.map */

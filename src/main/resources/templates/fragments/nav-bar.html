@@ -1,0 +1,20 @@
+<div th:fragment="nav-bar" class="nav-bar">
+    <span th:replace="~{fragments/app-info.html :: app-name}"></span>
+
+    <div class="nav-item-list">
+        <a href="/blog/search" class="nav-item search-blog">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path
+                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+            </svg>
+        </a>
+        <a href="/" class="nav-item">Trang chủ</a>
+        <a href="/contact" class="nav-item">Liên hệ</a>
+        <a href="/login" class="nav-item" th:unless="${isAuthenticated}">Đăng nhập</a>
+        <a href="/account" class="nav-item account" th:if="${isAuthenticated}">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+            </svg>
+        </a>
+    </div>
+</div>

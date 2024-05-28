@@ -1,0 +1,179 @@
+$blgtm-account-page-bgcl: rgb(241 241 241);
+
+body {
+    background-color: $blgtm-account-page-bgcl;
+}
+
+#page-main {
+    padding: 10px 20px;
+    margin-bottom: 20px;
+
+    .search-bar {
+        width: 100%;
+
+        .input-wrapper {
+            padding-right: 50px;
+            width: 100%;
+            position: relative;
+            background-color: white;
+            border: 1px #dcdcdc solid;
+            border-radius: 5px;
+            overflow: hidden;
+
+            input {
+                padding: 8px 20px;
+                width: 100%;
+                border: none;
+                outline: none;
+            }
+
+            .search-icon {
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                cursor: pointer;
+
+                svg {
+                    height: 20px;
+                    width: 20px;
+                }
+
+                &:hover {
+                    svg {
+                        transform: scale(1.1);
+                    }
+                }
+            }
+        }
+
+        .search-status {
+            margin-top: 5px;
+
+            .spinner {
+                height: 22px;
+                width: 22px;
+            }
+
+            .message {
+                font-weight: 500;
+                font-size: 0.9rem;
+
+                &.invalid {
+                    color: red;
+                }
+            }
+        }
+    }
+
+    .result-list {
+        margin-top: 30px;
+
+        .unsearch {
+            color: gray;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .result-list-title {
+            font-weight: bold;
+            font-size: 1.3rem;
+            padding-left: 10px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .result-message {
+            font-weight: bold;
+            font-size: 1.5rem;
+            text-align: center;
+            width: 100%;
+            color: gray;
+        }
+
+        .post-card {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px 15px;
+            background-color: white;
+            border-radius: 10px;
+            margin-top: 10px;
+
+            .user-section {
+                display: flex;
+                column-gap: 8px;
+                align-items: center;
+
+                .user-avatar {
+                    height: 40px;
+                    width: 40px;
+                }
+
+                .user-info {
+                    .name-of-user {
+                        font-weight: 500;
+                    }
+
+                    .date-of-post {
+                        font-size: 0.8rem;
+                        color: gray;
+                    }
+                }
+            }
+
+            .post-title {
+                width: 100%;
+                font-size: 2.2rem;
+                font-weight: bold;
+                margin-top: 8px;
+                padding-left: 45px;
+                cursor: pointer;
+                color: black;
+                text-decoration: none;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+
+            .hashtag {
+                margin-top: 5px;
+                padding-left: 45px;
+            }
+
+            .comment-section {
+                display: flex;
+                justify-content: space-between;
+                column-gap: 20px;
+                margin-top: 10px;
+                padding-left: 45px;
+
+                .comment-and-like-counts {
+                    display: flex;
+                    column-gap: 20px;
+
+                    .comments-count-box {
+                        svg {
+                            height: 16px;
+                            width: 16px;
+                        }
+                    }
+
+                    .likes-count-box {
+                        svg {
+                            height: 16px;
+                            width: 16px;
+                        }
+                    }
+
+                    & .comments-count-box,
+                    & .likes-count-box {
+                        display: flex;
+                        align-items: center;
+                        column-gap: 5px;
+                    }
+                }
+            }
+        }
+    }
+}
