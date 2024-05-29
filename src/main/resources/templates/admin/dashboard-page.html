@@ -34,15 +34,11 @@
             <div class="metrics">
                 <div class="total total-of-users">
                     <div class="total-title">Tổng số người dùng:</div>
-                    <div class="total-value">
-                        <span th:text="${metrics.totalOfUsers}"></span>
-                    </div>
+                    <div class="total-value"></div>
                 </div>
                 <div class="total total-of-posts">
                     <div class="total-title">Tổng số người dùng:</div>
-                    <div class="total-value">
-                        <span th:text="${metrics.totalOfPosts}"></span>
-                    </div>
+                    <div class="total-value"></div>
                 </div>
             </div>
         </section>
@@ -63,6 +59,11 @@
     <script th:src="@{/js/utils/constants.js}" charset="UTF-8" defer></script>
     <script th:src="@{/js/utils/apis.js}" charset="UTF-8" defer></script>
     <script th:src="@{/js/utils/helpers.js}" charset="UTF-8" defer></script>
+    <script th:inline="javascript" charset="UTF-8">
+        /*<![CDATA[*/
+        let ssrVar_metrics = /*[[${metrics}]]*/ null
+        /*]]>*/
+    </script>
     <script th:src="@{/js/admin-page.js}" charset="UTF-8" defer></script>
 </body>
 

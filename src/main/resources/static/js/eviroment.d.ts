@@ -5,3 +5,4 @@ declare var error: any
 declare var success: any
 declare var message: any
 declare class Chart {}
+declare var metrics: any

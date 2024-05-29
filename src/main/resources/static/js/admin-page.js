@@ -1,4 +1,7 @@
-const initPage = (data) => {
+const pageMain = document.querySelector("#page-main")
+const metricsList = pageMain.querySelector(".metrics-section .metrics")
+
+const renderChartUI = (data) => {
     // Dữ liệu của bạn
     const { totalOfUsers, totalOfPosts } = data
 
@@ -29,5 +32,15 @@ const initPage = (data) => {
 
     return chart
 }
+const chart = renderChartUI(ssrVar_metrics)
 
-const chart = initPage({ totalOfUsers: 21, totalOfPosts: 51 })
+const setUIOfMetrics = (data) => {
+    const { totalOfUsers, totalOfPosts } = data
+    metricsList.querySelector(".total-of-users .total-value").innerHTML = `<span>${totalOfUsers}</span>`
+    metricsList.querySelector(".total-of-posts .total-value").innerHTML = `<span>${totalOfPosts}</span>`
+}
+
+const initPage = async (data) => {
+    setUIOfMetrics(data)
+}
+initPage(ssrVar_metrics)
