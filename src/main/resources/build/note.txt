@@ -3,3 +3,6 @@ pass: vanvo555
 
 username: mumy2020@gmail.com
 pass: Mumy2-23
+
+username: admin-blogteam@gmail.com
+pass: wibu123

@@ -1,86 +1,49 @@
 $blgtm-account-page-bgcl: rgb(241 241 241);
 
-body {
-    background-color: $blgtm-account-page-bgcl;
-}
-
-#page-progress {
-    position: fixed;
-    top: 5px;
-    left: 5px;
-    z-index: 100;
-
-    .spinner {
-        height: 20px;
-        width: 20px;
-    }
-}
-
 #page-main {
-    padding: 10px 20px;
-    margin-bottom: 20px;
-
-    .search-bar {
-        width: 100%;
-
-        .input-wrapper {
-            padding-right: 50px;
-            width: 100%;
-            position: relative;
-            background-color: white;
-            border: 1px #dcdcdc solid;
-            border-radius: 5px;
-            overflow: hidden;
-
-            input {
-                padding: 8px 20px;
-                width: 100%;
-                border: none;
-                outline: none;
-            }
-
-            .search-icon {
-                position: absolute;
-                right: 10px;
-                top: 50%;
-                transform: translateY(-50%);
-                cursor: pointer;
-
-                svg {
-                    height: 20px;
-                    width: 20px;
-                }
-
-                &:hover {
-                    svg {
-                        transform: scale(1.1);
-                    }
-                }
+    .introduction {
+        padding: 40px;
+        position: relative;
+        background-image: url("/imgs/homepage-background.jpg");
+        overflow: hidden;
+        .hello {
+            font-size: 18px;
+            font-weight: bold;
+            text-shadow: 0px 0px 15px white;
+        }
+        .title {
+            font-size: 10vw;
+            font-family: var(--blgtm-poppins-bold-fontf);
+            margin: 20px 0 40px;
+            font-weight: bold;
+            .name-piece {
+                color: white;
             }
         }
-
-        .search-status {
-            margin-top: 5px;
-
-            .spinner {
-                height: 22px;
-                width: 22px;
-            }
-
-            .message {
-                font-weight: 500;
-                font-size: 0.9rem;
-
-                &.invalid {
-                    color: red;
-                }
-            }
+        .intro {
+            max-width: 50%;
+            text-shadow: 0px 0px 15px white;
+            font-weight: 500;
         }
     }
+    .most-visited-section {
+        margin: 40px 0 30px;
+        width: 100%;
+        background-color: $blgtm-account-page-bgcl;
 
-    .result-list-section {
-        .result-list {
-            margin-top: 30px;
+        .most-visited-title {
+            font-size: 40px;
+            font-weight: bold;
+            text-align: center;
+            padding-top: 20px;
+        }
+
+        .most-visited-posts {
+            display: flex;
+            flex-wrap: wrap;
+            column-gap: 10px;
+            justify-content: space-evenly;
+            padding: 20px;
 
             .unsearch {
                 color: gray;
@@ -105,7 +68,7 @@ body {
             }
 
             .post-card {
-                width: 100%;
+                width: 48%;
                 box-sizing: border-box;
                 padding: 10px 15px;
                 background-color: white;
@@ -135,6 +98,8 @@ body {
                 }
 
                 .post-title {
+                    display: block;
+                    max-width: 100%;
                     width: 100%;
                     font-size: 2.2rem;
                     font-weight: bold;
@@ -143,6 +108,9 @@ body {
                     cursor: pointer;
                     color: black;
                     text-decoration: none;
+                    white-space: nowrap; /* Không cho phép xuống dòng */
+                    overflow: hidden; /* Ẩn phần văn bản tràn ra ngoài */
+                    text-overflow: ellipsis; /* Hiển thị dấu ba chấm khi văn bản bị cắt */
 
                     &:hover {
                         text-decoration: underline;
@@ -150,6 +118,7 @@ body {
                 }
 
                 .hashtag {
+                    display: flex;
                     margin-top: 5px;
                     padding-left: 45px;
                 }
@@ -185,33 +154,6 @@ body {
                             align-items: center;
                             column-gap: 5px;
                         }
-                    }
-                }
-            }
-        }
-
-        .pagination-box {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-
-            .page-item {
-                cursor: pointer;
-
-                .page-link {
-                    color: black;
-
-                    &:hover {
-                        outline: 2px gray solid;
-                    }
-                }
-
-                &.active {
-                    .page-link {
-                        border-color: black;
-                        background-color: black;
-                        color: white;
-                        font-weight: bold;
                     }
                 }
             }

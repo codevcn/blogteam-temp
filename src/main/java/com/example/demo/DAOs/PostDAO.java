@@ -40,7 +40,7 @@ public class PostDAO {
 
     public List<Post> findByKeyword(String keyword, int offsetPage, int amountOfAPage) {
         String sql = "SELECT * FROM " + tableName + " WHERE deleted = 0 AND (title LIKE ? OR hashtag = ?)"
-            + " ORDER BY createdAt ASC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+            + " ORDER BY createdAt DESC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
         String likeSearchTerm = "%" + keyword + "%";
         return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Post.class), likeSearchTerm, keyword,
             offsetPage, amountOfAPage);

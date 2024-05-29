@@ -2,14 +2,6 @@ body {
   background-color: rgb(241, 241, 241);
 }
 
-@keyframes turning-spinner {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 #page-progress {
   position: fixed;
   top: 5px;

@@ -1,5 +1,66 @@
-.dashboard {
-    color: var(--blgtm-regular-orange-cl);
-    font-weight: bold;
-    padding: 10px;
+#page-main {
+  padding-bottom: 50px;
 }
+#page-main .page-title {
+  margin: 15px 10px;
+}
+#page-main .page-title h2 {
+  display: flex;
+  column-gap: 15px;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-bottom: 2px #dbdbdb solid;
+  padding-bottom: 10px;
+  padding-left: 40px;
+}
+#page-main .page-title h2 svg {
+  height: 25px;
+  width: 25px;
+}
+#page-main .metrics-section {
+  padding: 0 30px;
+}
+#page-main .metrics-section .section-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  padding-bottom: 5px;
+  border-bottom: 3px black solid;
+  width: fit-content;
+}
+#page-main .metrics-section .metrics .total {
+  display: flex;
+  column-gap: 8px;
+  padding: 5px 20px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+#page-main .metrics-section .metrics .total .total-title {
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+#page-main .metrics-section .metrics .total .total-value {
+  font-size: 1.1rem;
+}
+#page-main .charts-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 30px;
+  row-gap: 30px;
+}
+#page-main .charts-section .section-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  padding-bottom: 5px;
+  border-bottom: 3px black solid;
+  width: fit-content;
+}
+#page-main .charts-section .admin-bar-chart-wrapper {
+  position: relative;
+  width: 800px;
+}
+
+/*# sourceMappingURL=admin-page.css.map */

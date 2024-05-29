@@ -13,6 +13,7 @@ import com.example.demo.models.Interaction;
 import com.example.demo.models.Post;
 import com.example.demo.models.Review;
 import com.example.demo.models.User;
+import com.example.demo.models.advance.MostVisitedPost;
 import com.example.demo.utils.Helpers;
 import com.example.demo.utils.constants.Pagination;
 import com.example.demo.utils.exceptions.BaseException;
@@ -44,6 +45,10 @@ public class BlogService {
     @Autowired
     private VisitDAO visitDAO;
 
+    public int countPosts() {
+        return postDAO.count();
+    }
+
     public void visitPost(Long postId) {
         visitDAO.create(postId);
     }
@@ -54,6 +59,21 @@ public class BlogService {
 
     public void deletePost(Long postId) {
         postDAO.deleteById(postId);
+    }
+
+    public List<UtilDTOs.MostVisitedPostForViewing> findTopMostVisitedPosts(int amount) {
+        List<MostVisitedPost> mostVisitedPosts = visitDAO.findTopMostVisitedPosts(amount);
+        List<UtilDTOs.MostVisitedPostForViewing> posts = new ArrayList<>();
+        for (MostVisitedPost mostVisitedPost : mostVisitedPosts) {
+            Post post = postDAO.findById(mostVisitedPost.getPostID());
+            String[] datePatterns = {"yyyy-MM-dd HH:mm:ss.SSS", "yyyy-MM-dd HH:mm:ss.SS", "yyyy-MM-dd HH:mm:ss.S"};
+            String createdAt = helpers.formatDateString(datePatterns, post.getCreatedAt(), "dd/MM/yyyy HH:mm");
+            post.setCreatedAt(createdAt);
+            User user = userDAO.findByEmail(post.getUserID());
+            posts.add(new UtilDTOs.MostVisitedPostForViewing(post,
+                new UtilDTOs.UserOfAPost(user.getAvatar(), user.getFullName()), mostVisitedPost.getVisitsCount()));
+        }
+        return posts;
     }
 
     public void editBlog(Long postId, EditBlogDTO editBlogDTO) {

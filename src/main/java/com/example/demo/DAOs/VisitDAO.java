@@ -1,6 +1,7 @@
 package com.example.demo.DAOs;
 
 import com.example.demo.models.Visit;
+import com.example.demo.models.advance.MostVisitedPost;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -20,6 +21,12 @@ public class VisitDAO {
         String sql = "SELECT COUNT(*) FROM " + tableName;
         Integer count = jdbcTemplate.queryForObject(sql, Integer.class);
         return count == null ? 0 : count;
+    }
+
+    public List<MostVisitedPost> findTopMostVisitedPosts(int amount) {
+        String sql = "SELECT TOP " + amount + " postID, COUNT(*) AS visitsCount FROM " + tableName
+            + " GROUP BY postID ORDER BY visitsCount DESC";
+        return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(MostVisitedPost.class));
     }
 
     public int create(Long postId) {

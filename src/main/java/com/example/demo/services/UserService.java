@@ -23,6 +23,10 @@ public class UserService {
         return passwordEncoder.encode(original_password);
     }
 
+    public int countUsers() {
+        return userDAO.count();
+    }
+
     public void updatePassword(String userId, UpdatePasswordDTO updatePasswordDTO) {
         User user = new User();
         user.setPassword(encodePassword(updatePasswordDTO.getNewPassword()));

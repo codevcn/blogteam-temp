@@ -1,16 +1,69 @@
 <!DOCTYPE html>
 
 <html lang="vi" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link th:href="@{/styles/global/global.css}" rel="stylesheet" />
-        <link th:href="@{/styles/fragments/fragments.css}" rel="stylesheet" />
-        <link th:href="@{/styles/libs/SweetAlert2.css}" rel="stylesheet" />
-        <title>[[${appName}]]</title>
-    </head>
 
-    <body>
-        <div class="dashboard">admin dashboard</div>
-    </body>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link th:href="@{/styles/libs/SweetAlert2.css}" rel="stylesheet" />
+    <link th:href="@{/styles/libs/QuillJS.snow.css}" rel="stylesheet" />
+    <link th:href="@{/styles/libs/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/styles/global/global.css}" rel="stylesheet" />
+    <link th:href="@{/styles/fragments/fragments.css}" rel="stylesheet" />
+    <link th:href="@{/styles/admin-page.css}" rel="stylesheet" />
+    <title>[[${appName}]]</title>
+</head>
+
+<body>
+    <div th:replace="~{fragments/nav-bar.html :: nav-bar}"></div>
+
+    <main id="page-main">
+        <section class="page-title">
+            <h2>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-person-square"
+                    viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                    <path
+                        d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z" />
+                </svg>
+                <span>Trang quản trị viên (Admin)</span>
+            </h2>
+        </section>
+        <section class="metrics-section">
+            <h2 class="section-title">Số liệu</h2>
+            <div class="metrics">
+                <div class="total total-of-users">
+                    <div class="total-title">Tổng số người dùng:</div>
+                    <div class="total-value">
+                        <span th:text="${metrics.totalOfUsers}"></span>
+                    </div>
+                </div>
+                <div class="total total-of-posts">
+                    <div class="total-title">Tổng số người dùng:</div>
+                    <div class="total-value">
+                        <span th:text="${metrics.totalOfPosts}"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="charts-section">
+            <h2 class="section-title">Biểu đồ</h2>
+            <div class="admin-bar-chart-wrapper">
+                <canvas id="admin-bar-chart"></canvas>
+            </div>
+        </section>
+    </main>
+
+    <script th:src="@{/js/libs/SweetAlert2.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/libs/dayjs.min.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/libs/bootstrap.min.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/libs/popper.min.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/libs/axios.min.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/libs/chart.umd.min.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/utils/constants.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/utils/apis.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/utils/helpers.js}" charset="UTF-8" defer></script>
+    <script th:src="@{/js/admin-page.js}" charset="UTF-8" defer></script>
+</body>
+
 </html>

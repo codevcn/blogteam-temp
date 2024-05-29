@@ -12,7 +12,6 @@ const visitPostHandler = (href, postId) => async () => {
         await axios.post(`${visit_blog_api}/${postId}`)
     } catch (error) {
         const err = APIErrorHandler.handleError(error)
-        console.log(">>> Fail to visit post >>>", err)
     }
     pageProgress.innerHTML = ""
     window.location.href = href
@@ -94,12 +93,6 @@ const renderSearchResult = (post) => {
     return postCard
 }
 
-// const setUIOfPagination = (pageTarget, page) => {
-//     const paginationContainer = pageTarget.closest("nav")
-//     paginationContainer.querySelector(".page-item.active").classList.remove("active")
-//     paginationContainer.querySelector(`.page-item[data-pagination-value="${page}"]`).classList.add("active")
-// }
-
 const paginationData = { current: 1 }
 const paginateHandler = (page) => async (e) => {
     if (page === paginationData.current) return
@@ -133,6 +126,10 @@ const paginateHandler = (page) => async (e) => {
         createPagination(pagesCount, page_for_pagination)
     }
     setSearchStatus()
+}
+
+const clearUIOfPagination = () => {
+    paginationBox.innerHTML = ""
 }
 
 const createPagination = (pagesCount, activePage) => {
@@ -228,5 +225,6 @@ const searchBlog = () => {
         fetchResultSearchHandler(inputValue)
     } else {
         setSearchBlogMessage()
+        clearUIOfPagination()
     }
 }

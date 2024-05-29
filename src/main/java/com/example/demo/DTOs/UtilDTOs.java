@@ -1,11 +1,21 @@
 package com.example.demo.DTOs;
 
+import com.example.demo.models.Post;
 import com.example.demo.models.User;
 import java.util.List;
 
 public class UtilDTOs {
 
     public record Success(boolean success) {
+    }
+
+    public record Metrics(int totalOfPosts, int totalOfUsers) {
+    }
+
+    public record UserOfAPost(String avatar, String fullName) {
+    }
+
+    public record MostVisitedPostForViewing(Post post, UserOfAPost user, Long visitsCount) {
     }
 
     public record Result(boolean error, boolean success, String message) {
