@@ -13,6 +13,7 @@
 </head>
 
 <body>
+    <div id="page-progress"></div>
     <div th:replace="~{fragments/nav-bar.html :: nav-bar}"></div>
 
     <main id="page-main">
@@ -29,8 +30,12 @@
             </div>
             <div class="search-status"></div>
         </section>
-        <section class="result-list">
-            <h2 class="unsearch">Tìm kiếm bài đăng.</h2>
+
+        <section class="result-list-section">
+            <div class="result-list">
+                <h2 class="unsearch">Tìm kiếm bài đăng.</h2>
+            </div>
+            <div class="pagination-box"></div>
         </section>
     </main>
 

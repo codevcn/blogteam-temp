@@ -12,6 +12,7 @@ import com.example.demo.DTOs.auth.LoginRequestDTO;
 import com.example.demo.DTOs.user.UpdatePasswordDTO;
 import com.example.demo.services.AuthService;
 import com.example.demo.services.UserService;
+import com.example.demo.utils.exceptions.AuthException;
 import jakarta.validation.Valid;
 
 @RestController
@@ -20,15 +21,19 @@ public class UserAPIController {
 
     @Autowired
     private AuthService authService;
- 
+
     @Autowired
     private UserService userService;
 
     @PutMapping("update-password")
     public ResponseEntity<UtilDTOs.Success> updatePassword(@Valid @RequestBody UpdatePasswordDTO updatePasswordDTO,
-        Principal principal) {
+        Principal principal) throws AuthException {
         String userId = principal.getName();
-        authService.login(new LoginRequestDTO(userId, updatePasswordDTO.getOldPassword()));
+        try {
+            authService.login(new LoginRequestDTO(userId, updatePasswordDTO.getOldPassword()));
+        } catch (Exception e) {
+            throw new AuthException("Sai tên người dùng hoặc mật khẩu!");
+        }
         userService.updatePassword(userId, updatePasswordDTO);
         return ResponseEntity.ok(new UtilDTOs.Success(true));
     }

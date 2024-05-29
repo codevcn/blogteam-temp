@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Pagination</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        #product-list {
+            margin: 20px;
+        }
+
+        .product-item {
+            margin-bottom: 10px;
+        }
+
+        #pagination-controls {
+            margin: 20px;
+        }
+
+        .page-link {
+            margin: 0 5px;
+            cursor: pointer;
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="product-list"></div>
+    <div id="pagination-controls"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const productList = document.getElementById('product-list')
+            const paginationControls = document.getElementById('pagination-controls')
+            let currentPage = 0
+            const pageSize = 10
+            const products = [
+                { name: 'omg 1', age: 'really 2' },
+                { name: 'omg 3', age: 'really 4' },
+                { name: 'omg 5', age: 'really 6' },
+                { name: 'omg 7', age: 'really 8' },
+                { name: 'omg 9', age: 'really 10' },
+                { name: 'omg 11', age: 'really 12' },
+                { name: 'omg 13', age: 'really 14' },
+                { name: 'omg 15', age: 'really 16' },
+                { name: 'omg 17', age: 'really 18' },
+                { name: 'omg 19', age: 'really 20' },
+                { name: 'omg 21', age: 'really 22' },
+                { name: 'omg 23', age: 'really 24' },
+                { name: 'omg 25', age: 'really 26' },
+                { name: 'omg 27', age: 'really 28' },
+                { name: 'omg 29', age: 'really 30' },
+                { name: 'omg 31', age: 'really 32' },
+                { name: 'omg 33', age: 'really 34' },
+                { name: 'omg 35', age: 'really 36' },
+                { name: 'omg 37', age: 'really 38' },
+                { name: 'omg 39', age: 'really 40' },
+                { name: 'omg 41', age: 'really 42' },
+                { name: 'omg 43', age: 'really 44' },
+                { name: 'omg 45', age: 'really 46' },
+                { name: 'omg 47', age: 'really 48' },
+                { name: 'omg 49', age: 'really 50' },
+                { name: 'omg 51', age: 'really 52' },
+                { name: 'omg 53', age: 'really 54' },
+            ]
+            const data = {
+                content: products,
+                totalPages: 5
+            }
+
+            async function fetchProducts(page) {
+                displayProducts(data.content)
+                setupPagination(data.totalPages, page)
+            }
+
+            function displayProducts(products) {
+                productList.innerHTML = ''
+                products.forEach(product => {
+                    const productItem = document.createElement('div')
+                    productItem.classList.add('product-item')
+                    productItem.textContent = `${product.name} - $${product.price}`
+                    productList.appendChild(productItem)
+                })
+            }
+
+            function setupPagination(totalPages, currentPage) {
+                paginationControls.innerHTML = ''
+                for (let i = 0; i < totalPages; i++) {
+                    const pageLink = document.createElement('span')
+                    pageLink.classList.add('page-link')
+                    pageLink.textContent = i + 1
+                    if (i === currentPage) {
+                        pageLink.style.fontWeight = 'bold'
+                    }
+                    pageLink.addEventListener('click', () => {
+                        fetchProducts(i)
+                    })
+                    paginationControls.appendChild(pageLink)
+                }
+            }
+
+            fetchProducts(currentPage)
+        });
+    </script>
+</body>
+
+</html>

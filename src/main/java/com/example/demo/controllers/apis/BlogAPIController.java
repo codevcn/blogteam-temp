@@ -7,6 +7,7 @@ import com.example.demo.DTOs.blog.CreateBlogDTO;
 import com.example.demo.DTOs.blog.EditBlogDTO;
 import com.example.demo.DTOs.blog.MakeReviewDTO;
 import com.example.demo.services.BlogService;
+import com.example.demo.utils.constants.Pagination;
 import com.example.demo.utils.exceptions.BaseException;
 import jakarta.validation.Valid;
 import java.io.IOException;
@@ -22,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.List;
 
 @RestController
 @RequestMapping("api/blog")
@@ -39,9 +39,11 @@ public class BlogAPIController {
     }
 
     @GetMapping("search")
-    public ResponseEntity<List<UtilDTOs.SearchPosts>> searchBlog(
-        @RequestParam(name = "title", defaultValue = "") String title) {
-        List<UtilDTOs.SearchPosts> posts = blogService.searchPosts(title);
+    public ResponseEntity<UtilDTOs.SearchPosts> searchBlog(
+        @RequestParam(name = "keyword", defaultValue = "") String keyword,
+        @RequestParam(name = "page", defaultValue = "") String page) {
+        UtilDTOs.SearchPosts posts =
+            blogService.searchPosts(keyword, Integer.valueOf(page), Pagination.amountOfAPagePagination);
         return ResponseEntity.ok(posts);
     }
 
@@ -75,6 +77,12 @@ public class BlogAPIController {
     @DeleteMapping("delete-blog/{postId}")
     public ResponseEntity<UtilDTOs.Success> deleteBlog(@PathVariable("postId") String postId, Principal principal) {
         blogService.deletePost(Long.parseLong(postId));
+        return ResponseEntity.ok(new UtilDTOs.Success(true));
+    }
+
+    @PostMapping("visit-post/{postId}")
+    public ResponseEntity<UtilDTOs.Success> visitPost(@PathVariable("postId") String postId, Principal principal) {
+        blogService.visitPost(Long.parseLong(postId));
         return ResponseEntity.ok(new UtilDTOs.Success(true));
     }
 }

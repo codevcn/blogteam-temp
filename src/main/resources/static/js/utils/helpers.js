@@ -90,6 +90,57 @@ const getHTMLSpinner = () => {
         </div>`
 }
 
+const createHTMLPagination = (numberOfPages, activePage, func) => {
+    const firstPage = activePage > MAX_PAGINATION ? activePage - MAX_PAGINATION : 1
+    let finalPage = firstPage + MAX_PAGINATION - 1
+    if (finalPage > numberOfPages) {
+        finalPage = numberOfPages
+    }
+
+    const navEle = document.createElement("nav")
+    const ulEle = document.createElement("ul")
+    ulEle.classList.add("pagination")
+
+    const liEle_first = document.createElement("li")
+    liEle_first.classList.add("page-item")
+    liEle_first.innerHTML = `<span class="page-link">Trước</span>`
+    liEle_first.setAttribute("data-pagination-value", "pre")
+    if (firstPage < activePage) {
+        liEle_first.addEventListener("click", func("pre"))
+    }
+
+    ulEle.appendChild(liEle_first)
+
+    for (let i = firstPage; i <= finalPage; i++) {
+        const liEle = document.createElement("li")
+        liEle.classList.add("page-item")
+        if (i === activePage) {
+            liEle.classList.add("active")
+        }
+        liEle.innerHTML = `<span class="page-link">${i}</span>`
+        if (i !== activePage) {
+            liEle.addEventListener("click", func(i))
+        }
+        liEle.setAttribute("data-pagination-value", i)
+
+        ulEle.appendChild(liEle)
+    }
+
+    const liEle_final = document.createElement("li")
+    liEle_final.classList.add("page-item")
+    liEle_final.innerHTML = ` <span class="page-link">Sau</span>`
+    liEle_final.setAttribute("data-pagination-value", "next")
+    if (activePage < finalPage) {
+        liEle_final.addEventListener("click", func("next"))
+    }
+
+    ulEle.appendChild(liEle_final)
+
+    navEle.appendChild(ulEle)
+
+    return navEle
+}
+
 class APIErrorHandler {
     static handleError(originalError, defaultMessage = "Data requirement failed...") {
         const error = {

@@ -188,7 +188,7 @@ const submit_publish_blog = async () => {
             mainContent: blogMainContent.innerHTML,
             hashtag: blogHashtag
         })
-        window.location.href = "/account"
+        window.location.href = "/blog/my-posts"
     } catch (error) {
         Toastify.error({ title: "Xuất bản bài đăng thất bại", msg: error.message })
         return

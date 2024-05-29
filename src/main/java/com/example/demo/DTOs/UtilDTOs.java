@@ -11,8 +11,12 @@ public class UtilDTOs {
     public record Result(boolean error, boolean success, String message) {
     }
 
-    public record SearchPosts(Long id, String title, String createdAt, String background, User user, String mainContent,
-        Boolean isPrivate, String hashtag, Boolean deleted, String updateAt, int likesCount, int reviewsCount) {
+    public record PostForSearching(Long id, String title, String createdAt, String background, User user,
+        String mainContent, Boolean isPrivate, String hashtag, Boolean deleted, String updateAt, int likesCount,
+        int reviewsCount) {
+    }
+
+    public record SearchPosts(int pagesCount, List<UtilDTOs.PostForSearching> posts) {
     }
 
     public record PostsOfUser(Long id, String title, String createdAt, String background, User user, String mainContent,

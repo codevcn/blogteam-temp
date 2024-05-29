@@ -11,3 +11,6 @@ const max_title_letters_count = 100
 const min_hashtag_letters_count = 2
 const max_hashtag_letters_count = 500
 const MAX_LENGTH_OF_API_ERROR_MESSAGE = 100
+
+// pagination
+const MAX_PAGINATION = 5

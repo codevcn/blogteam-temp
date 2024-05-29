@@ -2,7 +2,21 @@ const pageMain = document.querySelector("#page-main")
 const searchBar = pageMain.querySelector(".search-bar")
 const searchStatus = searchBar.querySelector(".search-status")
 const searchInputWrapper = searchBar.querySelector(".input-wrapper")
-const searchResultList = pageMain.querySelector(".result-list")
+const searchResultList = pageMain.querySelector(".result-list-section .result-list")
+const paginationBox = pageMain.querySelector(".result-list-section .pagination-box")
+
+const visitPostHandler = (href, postId) => async () => {
+    const pageProgress = document.getElementById("page-progress")
+    pageProgress.innerHTML = getHTMLSpinner()
+    try {
+        await axios.post(`${visit_blog_api}/${postId}`)
+    } catch (error) {
+        const err = APIErrorHandler.handleError(error)
+        console.log(">>> Fail to visit post >>>", err)
+    }
+    pageProgress.innerHTML = ""
+    window.location.href = href
+}
 
 const renderSearchResult = (post) => {
     const user = post.user
@@ -30,10 +44,11 @@ const renderSearchResult = (post) => {
     userSection.appendChild(userAvatar)
     userSection.appendChild(userInfo)
 
-    const postTitle = document.createElement("a")
+    const postTitle = document.createElement("div")
     postTitle.classList.add("post-title")
     postTitle.textContent = post.title
-    postTitle.href = "/blog/view-blog/" + post.id
+    const postId = post.id
+    postTitle.addEventListener("click", visitPostHandler("/blog/view-blog/" + postId, postId))
 
     const hashtag = document.createElement("div")
     hashtag.classList.add("hashtag")
@@ -77,6 +92,52 @@ const renderSearchResult = (post) => {
     postCard.appendChild(commemtSection)
 
     return postCard
+}
+
+// const setUIOfPagination = (pageTarget, page) => {
+//     const paginationContainer = pageTarget.closest("nav")
+//     paginationContainer.querySelector(".page-item.active").classList.remove("active")
+//     paginationContainer.querySelector(`.page-item[data-pagination-value="${page}"]`).classList.add("active")
+// }
+
+const paginationData = { current: 1 }
+const paginateHandler = (page) => async (e) => {
+    if (page === paginationData.current) return
+    let page_for_pagination = page
+    if (page === "pre") {
+        page_for_pagination = paginationData.current - 1
+    } else if (page === "next") {
+        page_for_pagination = paginationData.current + 1
+    }
+    const inputValue = searchInputWrapper.querySelector("input").value
+    let apiSuccess = false
+    let apiResult
+    try {
+        const { data } = await searchRequest(inputValue, page_for_pagination)
+        console.log(">>> search with pagination >>>", data)
+        apiResult = data
+        apiSuccess = true
+    } catch (error) {
+        const err = APIErrorHandler.handleError(error)
+        Toastify.error({ title: "Tìm kiếm thất bại", msg: err.message })
+    }
+    if (apiSuccess) {
+        paginationData.current = page_for_pagination
+        const { posts, pagesCount } = apiResult
+        if (posts && posts.length > 0) {
+            setSearchBlogMessage()
+            renderSearchResultList(posts)
+        } else {
+            setSearchBlogMessage("not-found", inputValue)
+        }
+        createPagination(pagesCount, page_for_pagination)
+    }
+    setSearchStatus()
+}
+
+const createPagination = (pagesCount, activePage) => {
+    paginationBox.innerHTML = ""
+    paginationBox.appendChild(createHTMLPagination(pagesCount, activePage, paginateHandler))
 }
 
 const renderSearchResultList = async (list) => {
@@ -130,23 +191,29 @@ const setSearchStatus = (type, message) => {
     }
 }
 
+const searchRequest = async (input_value, page) => {
+    return await axios.get(`${search_blog_api}?keyword=${input_value}&page=${page}`)
+}
+
 const fetchResultSearchHandler = debounce(async (inputValue) => {
     if (validateInputValue(inputValue)) {
         setSearchStatus("on-progress")
-        let success = false
-        let result
+        let apiSuccess = false
+        let apiResult
         try {
-            const { data } = await axios.get(search_blog_api + "?title=" + inputValue)
-            console.log(">>> data >>>", data)
-            result = data
-            success = true
+            const { data } = await searchRequest(inputValue, 1)
+            console.log(">>> normal search data >>>", data)
+            apiResult = data
+            apiSuccess = true
         } catch (error) {
             Toastify.error({ title: "Tìm kiếm thất bại", msg: error.message })
         }
-        if (success) {
-            if (result && result.length > 0) {
+        if (apiSuccess) {
+            const { posts, pagesCount } = apiResult
+            if (posts && posts.length > 0) {
                 setSearchBlogMessage()
-                renderSearchResultList(result)
+                renderSearchResultList(posts)
+                createPagination(pagesCount, 1)
             } else {
                 setSearchBlogMessage("not-found", inputValue)
             }
@@ -155,16 +222,11 @@ const fetchResultSearchHandler = debounce(async (inputValue) => {
     }
 }, 500)
 
-const searchBlog = (target) => {
-    if (target === null) {
-        const inputValueWithSearchIcon = searchInputWrapper.querySelector("input").value
-        fetchResultSearchHandler(inputValueWithSearchIcon)
+const searchBlog = () => {
+    const inputValue = searchInputWrapper.querySelector("input").value
+    if (inputValue) {
+        fetchResultSearchHandler(inputValue)
     } else {
-        const inputValue = target.value
-        if (inputValue) {
-            fetchResultSearchHandler(inputValue)
-        } else {
-            setSearchBlogMessage()
-        }
+        setSearchBlogMessage()
     }
 }

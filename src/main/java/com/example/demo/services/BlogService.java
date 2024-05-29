@@ -4,6 +4,7 @@ import com.example.demo.DAOs.InteractionDAO;
 import com.example.demo.DAOs.PostDAO;
 import com.example.demo.DAOs.ReviewDAO;
 import com.example.demo.DAOs.UserDAO;
+import com.example.demo.DAOs.VisitDAO;
 import com.example.demo.DTOs.UtilDTOs;
 import com.example.demo.DTOs.UtilDTOs.ReviewWasMade;
 import com.example.demo.DTOs.blog.CreateBlogDTO;
@@ -13,6 +14,7 @@ import com.example.demo.models.Post;
 import com.example.demo.models.Review;
 import com.example.demo.models.User;
 import com.example.demo.utils.Helpers;
+import com.example.demo.utils.constants.Pagination;
 import com.example.demo.utils.exceptions.BaseException;
 import org.springframework.stereotype.Service;
 import java.io.IOException;
@@ -38,6 +40,13 @@ public class BlogService {
 
     @Autowired
     private Helpers helpers;
+
+    @Autowired
+    private VisitDAO visitDAO;
+
+    public void visitPost(Long postId) {
+        visitDAO.create(postId);
+    }
 
     public Post findPost(Long postId) {
         return postDAO.findById(postId);
@@ -106,17 +115,26 @@ public class BlogService {
         return searchPostsList;
     }
 
-    public List<UtilDTOs.SearchPosts> searchPosts(String keyword) {
-        List<Post> posts = postDAO.findByKeyword(keyword);
-        List<UtilDTOs.SearchPosts> searchPostsList = new ArrayList<UtilDTOs.SearchPosts>();
+    public UtilDTOs.SearchPosts searchPosts(String keyword, int page, int amountOfAPage) {
+        int offsetPage = (page - 1) * amountOfAPage;
+        List<Post> posts = postDAO.findByKeyword(keyword, offsetPage, amountOfAPage);
+        List<UtilDTOs.PostForSearching> searchPostsList = new ArrayList<>();
         for (Post post : posts) {
             User user = userDAO.findByEmail(post.getUserID());
-            searchPostsList.add(new UtilDTOs.SearchPosts(post.getId(), post.getTitle(), post.getCreatedAt(),
+            searchPostsList.add(new UtilDTOs.PostForSearching(post.getId(), post.getTitle(), post.getCreatedAt(),
                 post.getBackground(), user, post.getMainContent(), post.getIsPrivate(), post.getHashtag(),
                 post.getDeleted(), post.getUpdateAt(), interactionDAO.countByPostId(post.getId()),
                 reviewDAO.countByPostId(post.getId())));
         }
-        return searchPostsList;
+        int totalOfPosts = postDAO.count();
+        int pagesCount = 0;
+        int pagesCountCaculation = totalOfPosts / Pagination.amountOfAPagePagination;
+        if (totalOfPosts % Pagination.amountOfAPagePagination == 0) {
+            pagesCount = pagesCountCaculation;
+        } else {
+            pagesCount = pagesCountCaculation + 1;
+        }
+        return new UtilDTOs.SearchPosts(pagesCount, searchPostsList);
     }
 
     public UtilDTOs.PostForViewing findAPostForViewing(String postId, String userId) {

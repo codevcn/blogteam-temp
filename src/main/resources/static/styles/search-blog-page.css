@@ -2,6 +2,25 @@ body {
   background-color: rgb(241, 241, 241);
 }
 
+@keyframes turning-spinner {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+#page-progress {
+  position: fixed;
+  top: 5px;
+  left: 5px;
+  z-index: 100;
+}
+#page-progress .spinner {
+  height: 20px;
+  width: 20px;
+}
+
 #page-main {
   padding: 10px 20px;
   margin-bottom: 20px;
@@ -52,29 +71,29 @@ body {
 #page-main .search-bar .search-status .message.invalid {
   color: red;
 }
-#page-main .result-list {
+#page-main .result-list-section .result-list {
   margin-top: 30px;
 }
-#page-main .result-list .unsearch {
+#page-main .result-list-section .result-list .unsearch {
   color: gray;
   font-weight: bold;
   text-align: center;
 }
-#page-main .result-list .result-list-title {
+#page-main .result-list-section .result-list .result-list-title {
   font-weight: bold;
   font-size: 1.3rem;
   padding-left: 10px;
   margin-bottom: 10px;
   text-transform: uppercase;
 }
-#page-main .result-list .result-message {
+#page-main .result-list-section .result-list .result-message {
   font-weight: bold;
   font-size: 1.5rem;
   text-align: center;
   width: 100%;
   color: gray;
 }
-#page-main .result-list .post-card {
+#page-main .result-list-section .result-list .post-card {
   width: 100%;
   box-sizing: border-box;
   padding: 10px 15px;
@@ -82,23 +101,23 @@ body {
   border-radius: 10px;
   margin-top: 10px;
 }
-#page-main .result-list .post-card .user-section {
+#page-main .result-list-section .result-list .post-card .user-section {
   display: flex;
   column-gap: 8px;
   align-items: center;
 }
-#page-main .result-list .post-card .user-section .user-avatar {
+#page-main .result-list-section .result-list .post-card .user-section .user-avatar {
   height: 40px;
   width: 40px;
 }
-#page-main .result-list .post-card .user-section .user-info .name-of-user {
+#page-main .result-list-section .result-list .post-card .user-section .user-info .name-of-user {
   font-weight: 500;
 }
-#page-main .result-list .post-card .user-section .user-info .date-of-post {
+#page-main .result-list-section .result-list .post-card .user-section .user-info .date-of-post {
   font-size: 0.8rem;
   color: gray;
 }
-#page-main .result-list .post-card .post-title {
+#page-main .result-list-section .result-list .post-card .post-title {
   width: 100%;
   font-size: 2.2rem;
   font-weight: bold;
@@ -108,36 +127,56 @@ body {
   color: black;
   text-decoration: none;
 }
-#page-main .result-list .post-card .post-title:hover {
+#page-main .result-list-section .result-list .post-card .post-title:hover {
   text-decoration: underline;
 }
-#page-main .result-list .post-card .hashtag {
+#page-main .result-list-section .result-list .post-card .hashtag {
   margin-top: 5px;
   padding-left: 45px;
 }
-#page-main .result-list .post-card .comment-section {
+#page-main .result-list-section .result-list .post-card .comment-section {
   display: flex;
   justify-content: space-between;
   column-gap: 20px;
   margin-top: 10px;
   padding-left: 45px;
 }
-#page-main .result-list .post-card .comment-section .comment-and-like-counts {
+#page-main .result-list-section .result-list .post-card .comment-section .comment-and-like-counts {
   display: flex;
   column-gap: 20px;
 }
-#page-main .result-list .post-card .comment-section .comment-and-like-counts .comments-count-box svg {
+#page-main .result-list-section .result-list .post-card .comment-section .comment-and-like-counts .comments-count-box svg {
   height: 16px;
   width: 16px;
 }
-#page-main .result-list .post-card .comment-section .comment-and-like-counts .likes-count-box svg {
+#page-main .result-list-section .result-list .post-card .comment-section .comment-and-like-counts .likes-count-box svg {
   height: 16px;
   width: 16px;
 }
-#page-main .result-list .post-card .comment-section .comment-and-like-counts .comments-count-box, #page-main .result-list .post-card .comment-section .comment-and-like-counts .likes-count-box {
+#page-main .result-list-section .result-list .post-card .comment-section .comment-and-like-counts .comments-count-box, #page-main .result-list-section .result-list .post-card .comment-section .comment-and-like-counts .likes-count-box {
   display: flex;
   align-items: center;
   column-gap: 5px;
+}
+#page-main .result-list-section .pagination-box {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+#page-main .result-list-section .pagination-box .page-item {
+  cursor: pointer;
+}
+#page-main .result-list-section .pagination-box .page-item .page-link {
+  color: black;
+}
+#page-main .result-list-section .pagination-box .page-item .page-link:hover {
+  outline: 2px gray solid;
+}
+#page-main .result-list-section .pagination-box .page-item.active .page-link {
+  border-color: black;
+  background-color: black;
+  color: white;
+  font-weight: bold;
 }
 
 /*# sourceMappingURL=search-blog-page.css.map */
