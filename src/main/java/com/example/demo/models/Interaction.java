@@ -13,9 +13,9 @@ import lombok.ToString;
 @ToString
 public class Interaction {
 
-    private int postID;
+    private Long postID;
     private String userID;
-    private boolean liked;
+    private Boolean liked;
     private String createdAt;
     private String updatedAt;
 }

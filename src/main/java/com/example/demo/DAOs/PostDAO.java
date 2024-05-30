@@ -67,7 +67,7 @@ public class PostDAO {
     }
 
     public Post findById(Long post_id) {
-        String sql = "SELECT * FROM " + tableName + " WHERE id = ?";
+        String sql = "SELECT * FROM " + tableName + " WHERE id = ? AND deleted = 0";
         List<Post> posts = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Post.class), post_id);
         return posts.size() == 0 ? null : posts.get(0);
     }

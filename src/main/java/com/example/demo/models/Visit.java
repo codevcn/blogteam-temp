@@ -13,7 +13,7 @@ import lombok.ToString;
 @ToString
 public class Visit {
 
-    private int id;
-    private int postID;
+    private Long id;
+    private Long postID;
     private String createdAt;
 }

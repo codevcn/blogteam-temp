@@ -40,7 +40,7 @@ public class InteractionDAO {
 
     public int create(final @NonNull Interaction interaction) {
         String sql = "INSERT INTO " + tableName + "(postID, userID, liked)" + " VALUES (?, ?, ?)";
-        return jdbcTemplate.update(sql, interaction.getPostID(), interaction.getUserID(), interaction.isLiked());
+        return jdbcTemplate.update(sql, interaction.getPostID(), interaction.getUserID(), interaction.getLiked());
     }
 
     public List<Interaction> findPosts(Long post_id) {

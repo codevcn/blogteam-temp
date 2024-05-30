@@ -6,6 +6,7 @@ import com.example.demo.models.Post;
 import com.example.demo.services.BlogService;
 import com.example.demo.utils.client.ClientGlobalVarNames;
 import com.example.demo.utils.client.ClientPages;
+import com.example.demo.utils.exceptions.BaseException;
 import java.security.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,7 +41,8 @@ public class BlogController {
     }
 
     @GetMapping("view-blog/{postId}")
-    public String viewBlogPage(Model model, Principal principal, @PathVariable("postId") String postId) {
+    public String viewBlogPage(Model model, Principal principal, @PathVariable("postId") String postId)
+        throws BaseException {
         UtilDTOs.PostForViewing blog =
             blogService.findAPostForViewing(postId, principal == null ? null : principal.getName());
         model.addAttribute(ClientGlobalVarNames.appName, appInfoProps.getAppName());
@@ -60,7 +62,8 @@ public class BlogController {
     }
 
     @GetMapping("edit-blog/{postId}")
-    public String editBlogPage(Model model, Principal principal, @PathVariable("postId") String postId) {
+    public String editBlogPage(Model model, Principal principal, @PathVariable("postId") String postId)
+        throws BaseException {
         Post post = blogService.findPost(Long.parseLong(postId));
         model.addAttribute(ClientGlobalVarNames.appName, appInfoProps.getAppName());
         model.addAttribute(ClientGlobalVarNames.isAuthenticated, true);

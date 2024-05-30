@@ -53,8 +53,12 @@ public class BlogService {
         visitDAO.create(postId);
     }
 
-    public Post findPost(Long postId) {
-        return postDAO.findById(postId);
+    public Post findPost(Long postId) throws BaseException {
+        Post post = postDAO.findById(postId);
+        if (post == null) {
+            throw new BaseException("Không tìm thấy bài đăng");
+        }
+        return post;
     }
 
     public void deletePost(Long postId) {
@@ -66,12 +70,14 @@ public class BlogService {
         List<UtilDTOs.MostVisitedPostForViewing> posts = new ArrayList<>();
         for (MostVisitedPost mostVisitedPost : mostVisitedPosts) {
             Post post = postDAO.findById(mostVisitedPost.getPostID());
-            String[] datePatterns = {"yyyy-MM-dd HH:mm:ss.SSS", "yyyy-MM-dd HH:mm:ss.SS", "yyyy-MM-dd HH:mm:ss.S"};
-            String createdAt = helpers.formatDateString(datePatterns, post.getCreatedAt(), "dd/MM/yyyy HH:mm");
-            post.setCreatedAt(createdAt);
-            User user = userDAO.findByEmail(post.getUserID());
-            posts.add(new UtilDTOs.MostVisitedPostForViewing(post,
-                new UtilDTOs.UserOfAPost(user.getAvatar(), user.getFullName()), mostVisitedPost.getVisitsCount()));
+            if (post != null) {
+                String[] datePatterns = {"yyyy-MM-dd HH:mm:ss.SSS", "yyyy-MM-dd HH:mm:ss.SS", "yyyy-MM-dd HH:mm:ss.S"};
+                String createdAt = helpers.formatDateString(datePatterns, post.getCreatedAt(), "dd/MM/yyyy HH:mm");
+                post.setCreatedAt(createdAt);
+                User user = userDAO.findByEmail(post.getUserID());
+                posts.add(new UtilDTOs.MostVisitedPostForViewing(post,
+                    new UtilDTOs.UserOfAPost(user.getAvatar(), user.getFullName()), mostVisitedPost.getVisitsCount()));
+            }
         }
         return posts;
     }
@@ -105,7 +111,7 @@ public class BlogService {
     public void likePost(Long postId, String userId) {
         Interaction interaction = new Interaction();
         interaction.setLiked(true);
-        interaction.setPostID(postId.intValue());
+        interaction.setPostID(postId);
         interaction.setUserID(userId);
         interactionDAO.create(interaction);
     }
@@ -157,15 +163,18 @@ public class BlogService {
         return new UtilDTOs.SearchPosts(pagesCount, searchPostsList);
     }
 
-    public UtilDTOs.PostForViewing findAPostForViewing(String postId, String userId) {
+    public UtilDTOs.PostForViewing findAPostForViewing(String postId, String userId) throws BaseException {
         Post post = postDAO.findById(Long.parseLong(postId));
+        if (post == null) {
+            throw new BaseException("Không tìm thấy bài đăng");
+        }
 
         // interaction (like)
         List<Interaction> interactions = interactionDAO.findPosts(Long.parseLong(postId));
         int likesCount = 0;
         boolean liked = false;
         for (Interaction interaction : interactions) {
-            if (interaction.isLiked()) {
+            if (interaction.getLiked()) {
                 likesCount++;
             }
             if (userId != null && interaction.getUserID().equals(userId)) {
